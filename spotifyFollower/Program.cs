@@ -21,11 +21,39 @@ class Program
 
         string myId = (string)myInfo["id"]; // and weeding our id for next request
 
-        JObject followers = await HttpRequest_followers(authorization,myId);
+        JObject followersData = await HttpRequest_followers(authorization,myId);
 
-        JObject following = await HttpRequest_following(authorization,myId);
+        JObject followingData = await HttpRequest_following(authorization,myId);
 
-        await Console.Out.WriteLineAsync(following.ToString());
+        Root followers = JsonConvert.DeserializeObject<Root>(followersData.ToString());
+
+        Root following = JsonConvert.DeserializeObject<Root>(followingData.ToString());
+
+        List<string> followersDoesntFollowBack = followersDoesntFollowYouBack(followers,true);
+
+        List<string> followersYouDoesntFollow = followersDoesntFollowYouBack(following,false);
+
+        await Console.Out.WriteLineAsync("Followers doesnt follow you back");
+
+        await Console.Out.WriteLineAsync("-------------------------------->");
+
+        foreach (var user in followersDoesntFollowBack)
+        {
+            await Console.Out.WriteLineAsync(user);
+        }
+
+        await Console.Out.WriteLineAsync("---------------------------------");
+
+        await Console.Out.WriteLineAsync("Followers you doesnt follow");
+
+        await Console.Out.WriteLineAsync("-------------------------->");
+
+        foreach (var user in followersYouDoesntFollow)
+        {
+            await Console.Out.WriteLineAsync(user);
+        }
+
+        await Console.Out.WriteLineAsync("----------------------------");
 
     }
 
@@ -105,6 +133,34 @@ class Program
             jsonObject = JObject.Parse(content);
             return jsonObject;
         }
+    }
+
+    static List<string> followersDoesntFollowYouBack(Root followers, bool check)//if you call this bool tru that means you looking followers doenst follows you back but if bool is falls that means you cheking for followers you doesnt follow back
+    {
+        List<string> result = new List<string>();
+
+        if (check)
+        {
+            foreach (Profile follower in followers.Profiles)
+            {
+                if (!follower.IsFollowing)
+                {
+                    result.Add(follower.Name);
+                }
+            }
+        }
+        else 
+        {
+            foreach (Profile following in followers.Profiles)
+            {
+                if (!following.IsFollowed)
+                {
+                    result.Add(following.Name);
+                }
+            }
+        }
+
+        return result;
     }
 
 }
