@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spotifyFollower", "spotifyFollower\spotifyFollower.csproj", "{DEC6B936-8EA3-48AF-A4F3-61043C7EF92E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEC6B936-8EA3-48AF-A4F3-61043C7EF92E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC6B936-8EA3-48AF-A4F3-61043C7EF92E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC6B936-8EA3-48AF-A4F3-61043C7EF92E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC6B936-8EA3-48AF-A4F3-61043C7EF92E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A320CF9-9D52-4C55-90FB-1B123DDDC6C0}
+	EndGlobalSection
+EndGlobal
